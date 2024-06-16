@@ -13,4 +13,5 @@ inverted_dict_of_filters = {
     'Average': 3,
     'Paeth': 4
 }
+
 levels_of_compression = {i: str(i) for i in range(10)}
