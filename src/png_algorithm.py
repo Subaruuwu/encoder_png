@@ -14,5 +14,4 @@ def save_as_png(image, filename, filter_type, compression_level):
     png_data += create_iend_chunk()
     save_file(filename, png_data)
     print('png finish')
-    сщт
 
