@@ -23,12 +23,19 @@ def filter_scanline(scanline, prev_scanline, filter_type):
 
 
 def apply_filter(image, filter_type):
-    height, width, _ = image.shape
+    len_shapes = len(image.shape)
+    if len_shapes > 2:
+        height, width, _ = image.shape
+    else:
+        height, width = image.shape
     scanlines = []
     prev_scanline = None
 
     for y in range(height):
-        scanline = image[y, :, :3].tobytes()
+        if len_shapes > 2:
+            scanline = image[y, :, :3].tobytes()
+        else:
+            scanline = image[y, :].tobytes()
         filtered_scanline = filter_scanline(scanline, prev_scanline, filter_type)
         scanlines.append(bytes([filter_type]) + filtered_scanline)
         prev_scanline = scanline
