@@ -10,7 +10,7 @@ from src.name_getter import get_new_patch
 
 
 def start_app():
-    window = make_window('Png converter')
+    window = make_window('PNG-converter')
     file_patch = FilePatch()
 
     text_label = make_label(window, 'Выберите путь к изображению: ',  0, 0, 10, 10)
@@ -23,8 +23,8 @@ def start_app():
 
     info_label = make_text_label(50, 3, 0, 10, state='disabled')
 
-    path_button = make_button(window, 'press', lambda: select_input_files(start_button, info_label, file_patch), 0, 1, 10, 10)
+    path_button = make_button(window, 'Обзор', lambda: select_input_files(start_button, info_label, file_patch), 0, 1, 10, 10)
 
-    start_button = make_button(window, 'start', lambda: save_as_png(load_image_from_disk(file_patch.input_patch), get_new_patch(file_patch.input_patch, file_patch.output_patch), inverted_dict_of_filters[combo_filters.get()], int(combo_compression.get())), 4, 0, 0, 10, state='disabled')
+    start_button = make_button(window, 'Начать', lambda: save_as_png(load_image_from_disk(file_patch.input_patch), get_new_patch(file_patch.input_patch, file_patch.output_patch), inverted_dict_of_filters[combo_filters.get()], int(combo_compression.get())), 4, 0, 0, 10, state='disabled')
 
     window.mainloop()

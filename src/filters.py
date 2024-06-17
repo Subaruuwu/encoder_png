@@ -19,8 +19,7 @@ def filter_scanline(scanline, prev_scanline, filter_type):
 
         return bytearray(
             (scanline[i] - paeth_predictor(scanline[i - 3] if i >= 3 else 0, prev_scanline[i] if prev_scanline else 0,
-                                           prev_scanline[i - 3] if (i >= 3 and prev_scanline) else 0)) & 0xFF for i in
-            range(len(scanline)))
+                   prev_scanline[i - 3] if (i >= 3 and prev_scanline) else 0)) & 0xFF for i in range(len(scanline)))
 
 
 def apply_filter(image, filter_type):
