@@ -6,7 +6,11 @@ from src.io_operations import save_file
 
 def save_as_png(image, filename, filter_type, compression_level):
     print('start png')
-    height, width, _ = image.shape
+    print(image.shape)
+    if len(image.shape) > 2:
+        height, width, _ = image.shape
+    else:
+        height, width = image.shape
     png_data = create_png_signature()
     png_data += create_ihdr_chunk(width, height)
     scanlines = apply_filter(image, filter_type)
