@@ -4,7 +4,7 @@ from data.data_file import dict_of_filters, levels_of_compression, inverted_dict
 from app.labels import make_label, make_text_label
 from app.get_path import select_input_files
 from data.patch import FilePatch
-from src.png_algorithm import save_as_png
+from tests.test_png_algorithm import save_as_png
 from src.io_operations import load_image_from_disk
 from src.name_getter import get_new_patch
 
