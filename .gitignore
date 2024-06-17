@@ -1,3 +1,7 @@
 .idea/
 venv/
 new_img/
+__pycache__/
+app/__pycache__/
+data/__pycache__/
+src/__pycache__/

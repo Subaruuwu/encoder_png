@@ -6,6 +6,7 @@ import numpy as np
 def save_file(filename, data):
     with open(filename, 'wb') as f:
         f.write(data)
+    return filename
 
 
 def capture_image_from_camera():
