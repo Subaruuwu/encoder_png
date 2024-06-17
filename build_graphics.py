@@ -119,9 +119,11 @@ def show_one_graph_info(dct_info: dict, file_name = ''):
 
 def show_time_quality_relationship(arr_photo: list, compression_level=1):
     pxl_sizes = []
+    min_image = load_image_from_disk(arr_photo[0])
+    min_amount = min_image.shape[0]*min_image.shape[1]
     for path_image in arr_photo: # получение размеров изображений
         image = load_image_from_disk(path_image)
-        pxl_sizes.append(f'{image.shape[1]}x{image.shape[0]}\n({image.shape[0]*image.shape[1]})')
+        pxl_sizes.append(f'{image.shape[1]}x{image.shape[0]}\n({round(image.shape[0]*image.shape[1]/min_amount, 1)}X)')
 
     time_results = []
     filters = ['None', 'Sub', 'Up', 'Average', 'Paeth']
@@ -151,4 +153,4 @@ def show_time_quality_relationship(arr_photo: list, compression_level=1):
 # show_table_degree_compression(arr2_photos, filter=4)
 # a = get_one_graph_info('img/four_k.png')
 # show_one_graph_info(a, '4k_state_of_liberty.png')
-show_time_quality_relationship(['img/hd.png', 'img/two_k.png', 'img/four_k.png', 'img/eight_k.png'], compression_level=9)
+show_time_quality_relationship(['img/hd.png', 'img/two_k.png', 'img/four_k.png'], compression_level=9)
