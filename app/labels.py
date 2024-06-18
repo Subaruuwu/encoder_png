@@ -26,3 +26,4 @@ def make_text_label(width, row, column, height, state='normal'):
 
 def config_text(text_label, new_text):
     text_label.config(text=new_text)
+    text_label.update_idletasks()

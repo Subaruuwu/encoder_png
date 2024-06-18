@@ -1,10 +1,15 @@
 from src.chunk_handling import create_png_signature, create_ihdr_chunk, create_idat_chunk, create_iend_chunk
 from src.filters import apply_filter
 from src.io_operations import save_file
+from app.labels import config_text
+from src.file_utils import get_file_size, calculate_compression_ratio
+from data.data_file import file_patch
 import os
 
 
-def save_as_png(image, filename, filter_type, compression_level):
+def save_as_png(image, filename, filter_type, compression_level, text_label):
+    label = text_label
+    config_text(label, 'Конвертация началась\nЭто может занять некоторое\n время\nПожалйста подождите')
     if filter_type == 5:
         res = []
         if len(image.shape) > 2:
@@ -42,5 +47,6 @@ def save_as_png(image, filename, filter_type, compression_level):
         png_data += create_iend_chunk()
         save_file(filename, png_data)
     print('Done')
+    config_text(label, f'Конвертация завершена\nРазмер нового файла - {get_file_size(file_patch.new_image_patch)} Мб\nИзображение сжато по сравнению исходным на {calculate_compression_ratio(file_patch.input_patch, file_patch.new_image_patch) * 100}%')
     return filename
 

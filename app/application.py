@@ -3,7 +3,7 @@ from app.buttons import make_button, make_combobox
 from data.data_file import dict_of_filters, levels_of_compression, inverted_dict_of_filters
 from app.labels import make_label, make_text_label
 from app.get_path import select_input_files
-from data.patch import FilePatch
+from data.data_file import file_patch
 from src.png_algorithm import save_as_png
 from src.io_operations import load_image_from_disk
 from src.name_getter import get_new_patch
@@ -11,7 +11,6 @@ from src.name_getter import get_new_patch
 
 def start_app():
     window = make_window('PNG-converter')
-    file_patch = FilePatch()
 
     text_label = make_label(window, 'Выберите путь к изображению: ',  0, 0, 10, 10)
 
@@ -25,6 +24,9 @@ def start_app():
 
     path_button = make_button(window, 'Обзор', lambda: select_input_files(start_button, info_label, file_patch), 0, 1, 10, 10)
 
-    start_button = make_button(window, 'Начать', lambda: save_as_png(load_image_from_disk(file_patch.input_patch), get_new_patch(file_patch.input_patch, file_patch.output_patch), inverted_dict_of_filters[combo_filters.get()], int(combo_compression.get())), 4, 0, 0, 10, state='disabled')
+    status_label = make_label(window, '', 3, 1, 10, 10)
+
+    start_button = make_button(window, 'Начать', lambda: save_as_png(load_image_from_disk(file_patch.input_patch), get_new_patch(file_patch.input_patch, file_patch.output_patch), inverted_dict_of_filters[combo_filters.get()], int(combo_compression.get()), status_label), 4, 0, 0, 10, state='disabled')
+
 
     window.mainloop()

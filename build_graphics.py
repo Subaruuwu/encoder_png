@@ -109,9 +109,11 @@ def show_one_graph_info(dct_info: dict, file_name = ''):
     plt.title(f'Изменение веса изображения {file_name} от выбранного алгоритма и степени сжатия')
     plt.xlabel('Степень сжатия')
     plt.ylabel('Размер изображения, Мбайт')
+    marker_lines = ['o-', '1-', '^-', 's-', '*-']
+    i = 0
     for filter_name in dct_info:
-        plt.plot(list(range(0, 10)), dct_info[filter_name], 'o-', label=filter_name, linewidth=2)
-
+        plt.plot(list(range(0, 10)), dct_info[filter_name], marker_lines[i], label=filter_name, linewidth=6-i)
+        i += 1
     plt.grid(True)
     plt.legend()
     plt.show()
@@ -151,6 +153,6 @@ def show_time_quality_relationship(arr_photo: list, compression_level=1):
 
 # show_table_filters(arr_photos)
 # show_table_degree_compression(arr2_photos, filter=4)
-# a = get_one_graph_info('img/four_k.png')
-# show_one_graph_info(a, '4k_state_of_liberty.png')
+a = get_one_graph_info('img/salade-coloriage-nice-coloriage-salade-a-imprimer-sur-coloriages-fo-de-salade-coloriage.png')
+show_one_graph_info(a, '2,5k_black.png')
 show_time_quality_relationship(['img/hd.png', 'img/two_k.png', 'img/four_k.png'], compression_level=9)

@@ -31,6 +31,7 @@ def select_input_files(run_button, text_label, file_patch):
 
         file_patch.input_patch = selected_files[0]
         file_patch.output_patch = output_path
+        file_patch.new_image_patch = output_path + '/' + selected_files[0].split('/')[-1].split('.')[0] + 'converted.' + selected_files[0].split('/')[-1].split('.')[1]
 
         # output_path = get_directory_path(selected_files)
         # text_label.config(state='normal')
