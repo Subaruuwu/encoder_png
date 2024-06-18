@@ -78,7 +78,7 @@ def show_table_degree_compression(arr_photos, filter=4):
     plt.show()
 
 
-def get_one_graph_info(path: str) -> dict:
+def get_one_graph_info(path: str, compare_raw = False) -> dict:
     degrees = ['Origin', 1, 2, 3, 4, 5, 6, 7, 8, 9]
     filters_name = ['None', 'Sub', 'Up', 'Average', 'Paeth']
 
@@ -92,13 +92,16 @@ def get_one_graph_info(path: str) -> dict:
         curr_filter_info = [round(os.path.getsize(path)/1024/1024, 2)]
         print(filter_name.center(20), end='|')
 
-        print(str(round(os.path.getsize(path) / 1024 / 1024, 3)).center(20), end='|') # Столбец Origin
+        raw_image = load_image_from_disk(path)
+        raw_weight = os.path.getsize(raw_image)
+
+        print(str(round(os.path.getsize(path) / 1024 / 1024, 3)).center(20), end='|')  # Столбец Origin
 
         for degree in degrees[1:]:
             curr_file = save_as_png(image, filename='curr_out.png', filter_type=filter_id, compression_level=degree)
             curr_filter_info.append(round(os.path.getsize(curr_file) / 1024 / 1024, 2))
-            print((str(round(os.path.getsize(curr_file) / 1024 / 1024, 3)) + ' (' + str(
-                round(os.path.getsize(curr_file) / os.path.getsize(path) * 100, 2)) + '%)').center(20), end='|')
+            print((str(round(os.path.getsize(curr_file) / 1024 / 1024, 3)) +
+            ' (' + str(round(os.path.getsize(curr_file) / os.path.getsize(path) * 100, 2)) + '%)').center(20), end='|')
         print()
         dct_info[filter_name] = curr_filter_info
 
@@ -153,6 +156,20 @@ def show_time_quality_relationship(arr_photo: list, compression_level=1):
 
 # show_table_filters(arr_photos)
 # show_table_degree_compression(arr2_photos, filter=4)
+<<<<<<< HEAD
 a = get_one_graph_info('img/salade-coloriage-nice-coloriage-salade-a-imprimer-sur-coloriages-fo-de-salade-coloriage.png')
 show_one_graph_info(a, '2,5k_black.png')
 show_time_quality_relationship(['img/hd.png', 'img/two_k.png', 'img/four_k.png'], compression_level=9)
+=======
+# a = get_one_graph_info('img/state_of_liberty/4k_state_of_liberty.png')
+# show_one_graph_info(a, '4k_state_of_liberty.png')g
+show_time_quality_relationship([
+                                'img/state_of_liberty/l2715x1527_state_of_liberty.png',
+                                'img/state_of_liberty/l3840x2160_state_of_liberty.png',
+                                'img/state_of_liberty/l4703x2745_state_of_liberty.png',
+                                'img/state_of_liberty/l5431x3055_state_of_liberty.png',
+                                'img/state_of_liberty/l6072x3415_state_of_liberty.png',
+                                'img/state_of_liberty/l6651x3741_state_of_liberty.png',
+                                'img/state_of_liberty/l7184x4041_state_of_liberty.png',
+                                'img/state_of_liberty/8k_state_of_liberty.png'], compression_level=9)
+>>>>>>> 7f5749eef8209687086fcbd217ad3581f0007744
