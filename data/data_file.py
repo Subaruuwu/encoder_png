@@ -1,3 +1,6 @@
+from data.patch import FilePatch
+
+
 dict_of_filters = {
     0: 'None',
     1: 'Sub',
@@ -17,3 +20,5 @@ inverted_dict_of_filters = {
 }
 
 levels_of_compression = {i: str(i) for i in range(10)}
+
+file_patch = FilePatch()
